@@ -30,10 +30,6 @@ jobs:
       - name: run tests
         run: pytest --alluredir ./dashboard/
 
-  download_results:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
       - name: Get build artifacts
         uses: actions/download-artifact@v3
         with:
