@@ -45,11 +45,11 @@ jobs:
         with:
           name: allure_dashboard
           path: ./results/
-    deploy:
-      needs: archive
-      runs-on: ubuntu-latest
-      steps:
-        - name: Get build artifacts
-          uses: actions/download-artifact@v3
-          with:
-            name: build-files
+  download:
+    needs: archive
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
