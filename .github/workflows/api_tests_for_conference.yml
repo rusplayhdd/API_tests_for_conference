@@ -31,25 +31,25 @@ jobs:
       - name: run tests
         run: pytest --alluredir ./dashboard/
 
-    archive:
-      need: deploy
+  archive:
+    need: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get project code
+        uses: actions/checkout@v3
+      - name: Install Deps
+        run: npm ci
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure_dashboard
+          path: ./results/
+    deploy:
+      needs: archive
       runs-on: ubuntu-latest
       steps:
-        - name: Get project code
-          uses: actions/checkout@v3
-        - name: Install Deps
-          run: npm ci
-
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v3
+        - name: Get build artifacts
+          uses: actions/download-artifact@v3
           with:
-            name: allure_dashboard
-            path: ./results/
-      deploy:
-        needs: archive
-        runs-on: ubuntu-latest
-        steps:
-          - name: Get build artifacts
-            uses: actions/download-artifact@v3
-            with:
-              name: build-files
+            name: build-files
