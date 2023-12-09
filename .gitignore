@@ -3,3 +3,4 @@ node_modules
 envForConf
 .pytest_cache
 .idea
+results
