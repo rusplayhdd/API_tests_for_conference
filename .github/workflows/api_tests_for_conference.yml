@@ -37,13 +37,13 @@ jobs:
           name: dashboard
           path: .results/
 
-    download:
-      needs: deploy
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/download-artifact@v3
-          with:
-            name: dashboard
+  download:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dashboard
 #  pack:
 #    needs: deploy
 #    runs-on: ubuntu-latest
