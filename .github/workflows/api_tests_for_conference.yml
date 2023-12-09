@@ -34,8 +34,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dashboard
-          path: .results/
+          name: results
+          path: .dashboard/
 
   download:
     needs: deploy
@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: dashboard
+          name: results
 #  pack:
 #    needs: deploy
 #    runs-on: ubuntu-latest
