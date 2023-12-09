@@ -1,0 +1,5 @@
+node-modules
+123.py
+envForConf
+.pytest_cache
+.idea

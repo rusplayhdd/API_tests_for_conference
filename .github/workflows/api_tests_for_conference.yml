@@ -1,0 +1,38 @@
+name: sanity_testing
+on: push
+ёёёjobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+
+      - name: install deps
+        run: npm run ci
+
+      - uses: actions/cache@v3.3.2
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: install Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: '3.12'
+          cache: 'pip' # caching pip dependencies
+
+      - run: pip install -r requirements.txt
+
+      - name: run tests
+        run: pytest --alluredir ./dashboard/
+
+  download_results:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: results
+          path: ./dashboard/
