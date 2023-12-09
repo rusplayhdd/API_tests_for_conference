@@ -1,7 +1,7 @@
 """
 API testing 09-12-2023(c)
 """
-import requests, pytest, json
+import requests, pytest
 
 resp = requests.get("https://reqres.in/api/users")
 bad_resp = requests.get("https://reqres.in/a123pi/us123ers")

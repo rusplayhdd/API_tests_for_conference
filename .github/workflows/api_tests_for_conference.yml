@@ -34,8 +34,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: results
-          path: .dashboard/
+          name: results # название будующего архива
+          path: .dashboard/ # название папки
 
   download:
     needs: deploy
@@ -44,24 +44,3 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: results
-#  pack:
-#    needs: deploy
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Get project code
-#        uses: actions/checkout@v3
-#
-#      - name: Install Deps
-#        run: npm ci
-
-#        with:
-#          name:
-#          path: ./dashboard/
-#  download:
-#    needs: archive
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Get build artifacts
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: allure_dashboard
