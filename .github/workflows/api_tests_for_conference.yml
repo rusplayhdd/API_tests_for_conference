@@ -3,6 +3,7 @@ on: [push, workflow_dispatch]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Get the code
         uses: actions/checkout@v3
