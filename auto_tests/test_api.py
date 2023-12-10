@@ -34,7 +34,8 @@ def test_bad_status_code():
 
 def test_error_message_body():
     """id=0004"""
-    assert "error" or "Error" or "Not found" or "not found" or "404" in bad_resp.text
+    errors = ["error", "Error", "Not found", "not found", "404"]
+    assert any(error in bad_resp.text for error in errors)
 
 
 @pytest.mark.xfail(reason="waiting for fix!")
@@ -46,7 +47,8 @@ def test_bad_resp_has_dict():
 def test_bad_status_has_error_in_body():
     """id=0006"""
     assert 399 <= bad_resp.status_code <= 500
-    assert "error" or "Error" or "Not found" or "not found" or "404" in bad_resp.text
+    errors = ["error", "Error", "Not found", "not found", "404"]
+    assert any(error in bad_resp.text for error in errors)
 
 
 def test_body_has_a_dict_with_good_status():
@@ -67,7 +69,8 @@ def test_body_has_objs(i):
 def test_body_has_keys_as_string(i):
     """id=0009"""
     assert 199 <= resp.status_code <= 300
-    assert "id" and "email" and "first_name" and "last_name" and "avatar" in resp.json()["data"][i]
+    keys = ["id", "email", "first_name", "last_name", "avatar"]
+    assert all(key in resp.json()["data"][i] for key in keys)
 
 
 @pytest.mark.parametrize("index, key, __type", [(0, "id", int), (0, "avatar", str),
