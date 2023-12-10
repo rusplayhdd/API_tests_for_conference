@@ -69,8 +69,8 @@ def test_body_has_objs(i):
 def test_body_has_keys_as_string(i):
     """id=0009"""
     assert 199 <= resp.status_code <= 300
-    keys = ["id", "email", "first_name", "last_name", "avatar"]
-    assert all(key in resp.json()["data"][i] for key in keys)
+    keys = ("id", "email", "first_name", "last_name", "avatar")
+    assert all(map(resp.json()["data"][i].__contains__, keys))
 
 
 @pytest.mark.parametrize("index, key, __type", [(0, "id", int), (0, "avatar", str),

@@ -1,6 +1,6 @@
-node_modules
+node_modules/
 123.py
-envForConf
-.pytest_cache
-.idea
-results
+envForConf/
+.pytest_cache/
+.idea/
+results/
