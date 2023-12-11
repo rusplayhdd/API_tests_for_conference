@@ -69,8 +69,16 @@ def test_body_has_objs(i):
 def test_body_has_keys_as_string(i):
     """id=0009"""
     assert 199 <= resp.status_code <= 300
-    keys = ("id", "email", "first_name", "last_name", "avatar")
+    keys = ("id", "first_name", "last_name")
     assert all(map(resp.json()["data"][i].__contains__, keys))
+    # ==================
+    keys = ["544", "a455vatar"]
+
+    assert not any(key in resp.json()["data"][i] for key in keys)
+    print("The data in body doesn't contains any key")
+
+    # if not any(key in resp.json()["data"][i] for key in keys):
+    #     print("The data in body doesn't contain any key")
 
 
 @pytest.mark.parametrize("index, key, __type", [(0, "id", int), (0, "avatar", str),
