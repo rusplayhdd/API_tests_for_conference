@@ -76,11 +76,8 @@ def test_body_has_keys_as_string(i):
     # ==================
     keys = ["email", "avatar"]
 
-    # assert not any(key in resp.json()["data"][i] for key in keys)
-    # print("\033[33m The data in body doesn't contain any key\033[0m")
-
     if not any(key in resp.json()["data"][i] for key in keys):
-        print("\033[33m The data in body doesn't contain any key\033[0m")
+        print("\033[33m The data in body doesn't contain any unimportant key\033[0m")
 
 
 @pytest.mark.parametrize("index, key, __type", [(0, "id", int), (0, "avatar", str),
